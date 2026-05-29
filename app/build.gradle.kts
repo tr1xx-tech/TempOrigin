@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.originos.dsuhelper"
+    namespace = "com.originos.temporigin"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.originos.dsuhelper"
+        applicationId = "com.originos.temporigin"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

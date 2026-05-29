@@ -1,4 +1,4 @@
-package com.originos.dsuhelper
+package com.originos.temporigin
 
 import android.content.Context
 import android.os.Bundle

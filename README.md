@@ -1,6 +1,6 @@
-# 📱 Origin DSU Helper
+# 📱 TempOrigin
 
-**Origin DSU Helper** — это мощная и легковесная утилита для Android, созданная специально для смартфонов Vivo и iQOO под управлением **OriginOS** (поддерживает OriginOS 6, Android 13, 14 и 15+). 
+**TempOrigin** — это мощная и легковесная утилита для Android, созданная специально для смартфонов Vivo и iQOO под управлением **OriginOS** (поддерживает OriginOS 6, Android 13, 14 и 15+). 
 
 Приложение позволяет в один клик разворачивать **вторую изолированную систему** прямо на вашем телефоне с помощью системного механизма Google DSU (Dynamic System Update), используя оригинальный системный раздел устройства и выделяя под него защищенную виртуальную память (от 2 до 64 ГБ).
 
@@ -67,10 +67,10 @@ chmod +x build_apk.sh
 ## 📂 Структура репозитория
 
 ```
-OriginDsuHelper/
+TempOrigin/
 ├── app/
 │   ├── src/main/
-│   │   ├── java/com/originos/dsuhelper/
+│   │   ├── java/com/originos/temporigin/
 │   │   │   ├── MainActivity.kt        # Главное окно, диагностика и запуск DSU
 │   │   │   ├── SettingsActivity.kt    # Отдельное окно настроек и Shizuku
 │   │   │   └── ThemeHelper.kt         # Глобальная локализация и Material 3 темы

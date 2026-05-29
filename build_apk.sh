@@ -4,7 +4,7 @@
 set -e
 
 echo "========================================================="
-echo "   Origin DSU Helper - Automated compilation bootstrap   "
+echo "   TempOrigin - Automated compilation bootstrap   "
 echo "========================================================="
 
 # 1. Download & configure Gradle standalone
@@ -14,12 +14,14 @@ if [ ! -d "/opt/gradle/gradle-8.5" ]; then
     mkdir -p /opt/gradle
     wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip -O /tmp/gradle.zip
     echo "Extracting Gradle 8.5..."
-    unzip -q /tmp/gradle.zip -d /opt/gradle
+    python3 -c "import zipfile; zipfile.ZipFile('/tmp/gradle.zip').extractall('/opt/gradle')"
     rm -f /tmp/gradle.zip
     echo "Gradle 8.5 bootstrapped successfully."
 else
     echo "Gradle 8.5 is already installed."
 fi
+
+chmod +x /opt/gradle/gradle-8.5/bin/* || true
 
 # Set temporary path environment for local session
 export PATH=$PATH:/opt/gradle/gradle-8.5/bin
@@ -33,7 +35,7 @@ if [ ! -d "/root/Android/Sdk/cmdline-tools/latest" ]; then
     wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O /tmp/cmdline-tools.zip
     echo "Extracting tools..."
     mkdir -p /tmp/cmdline-tools-extracted
-    unzip -q /tmp/cmdline-tools.zip -d /tmp/cmdline-tools-extracted
+    python3 -c "import zipfile; zipfile.ZipFile('/tmp/cmdline-tools.zip').extractall('/tmp/cmdline-tools-extracted')"
     
     # Modern directory layout expects cmdline-tools/latest/bin/sdkmanager
     mv /tmp/cmdline-tools-extracted/cmdline-tools /root/Android/Sdk/cmdline-tools/latest
@@ -44,6 +46,8 @@ else
 fi
 
 SDK_MANAGER="/root/Android/Sdk/cmdline-tools/latest/bin/sdkmanager"
+chmod +x "$SDK_MANAGER" || true
+chmod +x /root/Android/Sdk/cmdline-tools/latest/bin/* || true
 
 # 3. Accept Google Android Licenses
 echo -e "\n[3/7] Accepting Google SDK Licenses..."
@@ -55,12 +59,12 @@ $SDK_MANAGER --sdk_root=/root/Android/Sdk "platforms;android-34" "build-tools;34
 
 # 5. Dynamic local.properties config
 echo -e "\n[5/7] Configuring local.properties..."
-echo "sdk.dir=/root/Android/Sdk" > /root/coding/OriginDsuHelper/local.properties
+echo "sdk.dir=/root/Android/Sdk" > /root/coding/TempOrigin/local.properties
 echo "Wrote local.properties successfully."
 
 # 6. Initialize Gradle Wrapper in project
 echo -e "\n[6/7] Generating Gradle Wrapper for the project..."
-cd /root/coding/OriginDsuHelper
+cd /root/coding/TempOrigin
 gradle wrapper
 
 # 7. Compile APK
@@ -72,7 +76,7 @@ echo -e "\n========================================================="
 echo "                  COMPILATION COMPLETE!                  "
 echo "========================================================="
 
-APK_PATH="/root/coding/OriginDsuHelper/app/build/outputs/apk/release/app-release.apk"
+APK_PATH="/root/coding/TempOrigin/app/build/outputs/apk/release/app-release.apk"
 if [ -f "$APK_PATH" ]; then
     echo -e "\n[SUCCESS] Optimized Release APK was successfully compiled and is located at:"
     echo -e "   \033[1;32m$APK_PATH\033[0m"

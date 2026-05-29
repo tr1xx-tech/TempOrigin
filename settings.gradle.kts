@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "OriginDsuHelper"
+rootProject.name = "TempOrigin"
 include(":app")

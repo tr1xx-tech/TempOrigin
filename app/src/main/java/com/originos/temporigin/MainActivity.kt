@@ -1,4 +1,4 @@
-package com.originos.dsuhelper
+package com.originos.temporigin
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -161,7 +161,7 @@ fun copyToClipboard(context: Context, text: String, label: String = "Коман�
 
 // Multi-language strings database
 enum class LocString(val ru: String, val en: String) {
-    APP_TITLE("Origin DSU Helper", "Origin DSU Helper"),
+    APP_TITLE("TempOrigin", "TempOrigin"),
     SETTINGS_TITLE("Настройки", "Settings"),
     SYS_INFO("Информация о системе", "System Information"),
     DEVICE_MODEL("Модель устройства:", "Device Model:"),
